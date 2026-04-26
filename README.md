@@ -49,14 +49,6 @@ FinGuard simulates how financial platforms detect suspicious transactions in rea
 
 ---
 
-## 📊 GitHub Stats
-
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=thbldprncee&show_icons=true&theme=tokyonight)
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=thbldprncee&layout=compact&theme=tokyonight)
-
----
-
 ## 📫 Contact
 
 - 📧 Email: [thbldprnce@gmail.com](mailto:thbldprnce@gmail.com)
