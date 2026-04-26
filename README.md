@@ -22,3 +22,4 @@ Telegram: [@viennall](https://t.me/viennall)
 
 - **project-name** — Short description of what it does  
   *Tech Stack: Java, Kafka, Redis*
+
