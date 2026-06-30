@@ -1,4 +1,4 @@
-**Java Backend Developer** · **ITMO University** · **2rd-year Software Engineering student**
+**Java Backend Developer** · **ITMO University** · **3rd-year Software Engineering student**
 
 ---
 
