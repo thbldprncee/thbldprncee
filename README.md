@@ -33,19 +33,20 @@ I'm a backend-focused Java developer interested in building reliable server-side
 
 ### 🔐 [FinGuard](https://github.com/thbldprncee/finguard)
 
-**Real-time anti-fraud transaction monitoring system** for fintech-like transaction processing.
+**Real-time anti-fraud transaction monitoring system** — event-driven microservices for fintech-like transaction processing.
 
-FinGuard simulates how financial platforms detect suspicious transactions in real time. The system receives transaction requests, publishes events to Kafka, analyzes them using a rule-based fraud scoring engine, stores fraud decisions, and shows suspicious activity in a dashboard.
+FinGuard simulates how financial platforms detect suspicious transactions in real time. Transactions are accepted through an API gateway, published to Kafka through a transactional outbox, scored by a rule-based fraud engine, and the decisions are streamed live to a React dashboard.
 
-**Tech stack:** Java, Spring Boot, Kafka, PostgreSQL, Redis, Docker
+**Tech stack:** Java 21, Spring Boot, Spring Cloud Gateway, Kafka, PostgreSQL, Redis, Keycloak, React, TypeScript, Docker
 
 **Key features:**
-- Event-driven transaction processing with Kafka
-- Fraud scoring engine with risk levels
+- Microservices communicating through Kafka, with a Transactional Outbox and idempotent consumers
+- Concurrency-safe `Idempotency-Key` handling on the transaction API
+- Fail-safe fraud rule engine: rule weights from the database, sliding-window velocity, structuring detection
 - Decisions: `APPROVED`, `REVIEW_REQUIRED`, `BLOCKED`
-- PostgreSQL persistence and Redis caching
-- Audit logging and notification flow
-- Planned React dashboard for monitoring alerts
+- Keycloak (OIDC + PKCE) authentication, RS256 tokens validated by every service
+- Kafka secured with SASL/SCRAM and per-service ACLs; one database per service
+- Audit trail, notifications and a live SSE dashboard filtered per user
 
 ### 📝 [Formatted Text Converter](https://github.com/thbldprncee/formatted-text-converter)
 
