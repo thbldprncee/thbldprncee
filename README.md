@@ -29,7 +29,7 @@ I'm a backend-focused Java developer interested in building reliable server-side
 
 ---
 
-## 💼 Featured Project
+## 💼 Featured Projects
 
 ### 🔐 [FinGuard](https://github.com/thbldprncee/finguard)
 
@@ -46,6 +46,22 @@ FinGuard simulates how financial platforms detect suspicious transactions in rea
 - PostgreSQL persistence and Redis caching
 - Audit logging and notification flow
 - Planned React dashboard for monitoring alerts
+
+### 📝 [Formatted Text Converter](https://github.com/thbldprncee/formatted-text-converter)
+
+**Text format converter built around a single immutable AST** — Markdown, XHTML, JSON, RTF, plain text and LaTeX.
+
+Every input is parsed into one format-independent document model, so any format can be converted to any other, and operations like style removal are written once. The input format is recognised by content, the output format by file extension. All parsers (JSON, XML, RTF) are hand-written, with zero runtime dependencies.
+
+**Tech stack:** Java 21, Gradle, Lombok, JUnit 5, AssertJ, JaCoCo, GitHub Actions
+
+**Key features:**
+- Sealed record AST with pattern matching and the Stream API
+- Lossless round trips: Markdown → JSON / XHTML / RTF → Markdown is byte-identical
+- Nested lists, tables, code blocks, links, images and quotes in every format
+- Style removal, configurable indentation, document statistics
+- Visitor, Strategy, Template Method, Builder and Facade; formats plug in via `ServiceLoader`
+- 154 tests, 96% line coverage
 
 ---
 
