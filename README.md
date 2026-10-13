@@ -66,19 +66,19 @@ Every input is parsed into one format-independent document model, so any format 
 
 ### 🚗 [Car Dealer Backend](https://github.com/thbldprncee/car-dealer-backend)
 
-**Car dealership REST API** for inventory, a car configurator, in-stock and build-to-order sales, and test drives.
+**Car dealership microservices.** An order service and a warehouse service coordinate sales through a Kafka saga.
 
-Showroom cars are reserved and sold through a manager-approved workflow, and custom cars are configured from compatible components, priced and built to order. Both flows are explicit state machines inside rich JPA entities. Every endpoint is protected by Keycloak, and access depends on the caller's role and on whether they own the record.
+Each service owns its database. When a client pays for a showroom car, the order service asks the warehouse to reserve it. Custom cars are configured from compatible components and checked by the warehouse before payment. Cancellations trigger compensating events that put the car back on sale. Inventory is also served over gRPC, and every endpoint is protected by Keycloak.
 
-**Tech stack:** Java 21, Spring Boot, Spring Security (OAuth2 Resource Server), Keycloak, PostgreSQL, Liquibase, MapStruct, Testcontainers, Docker
+**Tech stack:** Java 21, Spring Boot, Kafka, gRPC / Protobuf, Keycloak (OAuth2 Resource Server), PostgreSQL, Liquibase, MapStruct, Testcontainers, Docker
 
 **Key features:**
-- Order state machines (6 and 8 states) enforced by the domain model, with a car reserved on order and released on cancel
-- Configurator that checks component type and model compatibility and prices the build
-- Keycloak JWT with realm-role mapping; the client's identity comes from the token, never from the request body
-- Ownership checks in `@PreAuthorize` (`@ownership.ownsInStockOrder(#id)`): clients see only their own orders
-- JPA Specifications, soft delete, Liquibase schema and seed data, unified error contract
-- 121 tests: unit tests plus integration tests against real PostgreSQL and Keycloak containers
+- Saga across two services with a transactional outbox (`FOR UPDATE SKIP LOCKED`) and idempotent consumers
+- Compensation: a canceled order releases its reserved car, and a late approval request is rejected
+- Retries with a dead-letter topic for poison messages; trace id propagated through Kafka
+- gRPC inventory API with deadlines and status-to-HTTP mapping
+- Order state machines enforced by the domain model; warehouse transitions only come from the warehouse
+- Integration tests that drive each service through real Kafka and PostgreSQL containers
 
 ---
 
