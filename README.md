@@ -64,6 +64,22 @@ Every input is parsed into one format-independent document model, so any format 
 - Visitor, Strategy, Template Method, Builder and Facade; formats plug in via `ServiceLoader`
 - 154 tests, 96% line coverage
 
+### 🚗 [Car Dealer Backend](https://github.com/thbldprncee/car-dealer-backend)
+
+**Car dealership REST API** for inventory, a car configurator, in-stock and build-to-order sales, and test drives.
+
+Showroom cars are reserved and sold through a manager-approved workflow, and custom cars are configured from compatible components, priced and built to order. Both flows are explicit state machines inside rich JPA entities. Every endpoint is protected by Keycloak, and access depends on the caller's role and on whether they own the record.
+
+**Tech stack:** Java 21, Spring Boot, Spring Security (OAuth2 Resource Server), Keycloak, PostgreSQL, Liquibase, MapStruct, Testcontainers, Docker
+
+**Key features:**
+- Order state machines (6 and 8 states) enforced by the domain model, with a car reserved on order and released on cancel
+- Configurator that checks component type and model compatibility and prices the build
+- Keycloak JWT with realm-role mapping; the client's identity comes from the token, never from the request body
+- Ownership checks in `@PreAuthorize` (`@ownership.ownsInStockOrder(#id)`): clients see only their own orders
+- JPA Specifications, soft delete, Liquibase schema and seed data, unified error contract
+- 121 tests: unit tests plus integration tests against real PostgreSQL and Keycloak containers
+
 ---
 
 ## 📫 Contact
